@@ -3,7 +3,6 @@ import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { HiMenu } from "react-icons/hi";
-import { FaUserCircle } from "react-icons/fa";
 import nookies from "nookies";
 
 export default function Navbar() {
@@ -13,7 +12,8 @@ export default function Navbar() {
 
     useEffect(() => {
         const cookies = nookies.get(null);
-        setUserId(cookies.userId || null);
+        const storedUserId = cookies.user_id || null; // Ensure the key matches exactly
+        setUserId(storedUserId);
 
         // Close menu when clicking outside
         const handleClickOutside = (event: MouseEvent) => {
@@ -32,26 +32,29 @@ export default function Navbar() {
         <nav className="flex justify-between items-center px-5 py-2 relative">
             {/* Logo */}
             <div>
-                <Image
-                    src="/longlogo.svg"
-                    alt="Logo"
-                    width={200}
-                    height={200}
-                   
-                    
-                />
+                <Link href="/">
+                    <Image src="/longlogo.svg" alt="Logo" width={200} height={50} />
+                </Link>
             </div>
 
             {/* Desktop Menu */}
             <div className="hidden md:flex space-x-5 items-center">
                 {userId ? (
-                    <FaUserCircle className="text-3xl text-gray-700" />
+                    <Link href="/profile">
+                        <Image
+                            src="/images/profile-icon.png"
+                            alt="Profile"
+                            width={40}
+                            height={40}
+                            className="rounded-full cursor-pointer border"
+                        />
+                    </Link>
                 ) : (
                     <>
-                        <Link href="/login" className="text-[#8D6E63] underline">
+                        <Link href="/auth/login" className="text-[#8D6E63] underline">
                             Login
                         </Link>
-                        <Link href="/register">
+                        <Link href="/auth/register">
                             <button className="px-3 py-2 text-sm bg-[#4CAF50] rounded-md text-white">
                                 Register
                             </button>
@@ -69,16 +72,25 @@ export default function Navbar() {
             {isOpen && (
                 <div
                     ref={menuRef}
-                    className="absolute top-14 right-5 bg-white p-4 shadow-lg rounded-md"
+                    className="absolute top-14 right-5 bg-white p-4 shadow-lg rounded-md w-40"
                 >
                     {userId ? (
-                        <FaUserCircle className="text-3xl text-gray-700" />
+                        <Link href="/profile" className="flex items-center space-x-2">
+                            <Image
+                                src="/images/profile-icon.png"
+                                alt="Profile"
+                                width={40}
+                                height={40}
+                                className="rounded-full border"
+                            />
+                            <span className="text-gray-700">Profile</span>
+                        </Link>
                     ) : (
                         <>
-                            <Link href="/login" className="block text-[#8D6E63] mb-2">
+                            <Link href="/auth/login" className="block text-[#8D6E63] mb-2">
                                 Login
                             </Link>
-                            <Link href="/register">
+                            <Link href="/auth/register">
                                 <button className="px-3 py-2 text-sm bg-[#4CAF50] rounded-md text-white w-full">
                                     Register
                                 </button>
