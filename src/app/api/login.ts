@@ -19,8 +19,8 @@ export const loginUser = async (credentials: {
     );
 
     // Store user ID in cookies for 7 days
-    if (response.data?.user?.id) {
-      Cookies.set("user_id", response.data.user.id, { expires: 7 });
+    if (response.data?.user_id) {  // Check for user_id in the response
+      Cookies.set("user_id", response.data.user_id, { expires: 7 });
     }
 
     return { success: true, data: response.data };
