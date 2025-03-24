@@ -4,10 +4,10 @@ import React, { useEffect, useState } from "react";
 import { fetchActivities, deleteActivity, createActivity } from "../../api/activities";
 import { Activity } from "../../api/activities";
 import { FaTrash, FaPlus, FaSpinner } from "react-icons/fa";
-import toast from "react-hot-toast"; // Import toast for notifications
-import { format } from 'date-fns'; // Import date-fns for date formatting
+import toast from "react-hot-toast";
+import { format } from 'date-fns';
 
-// Loading Spinner Component for Reusability
+// Loader Component
 const Loader: React.FC = () => (
   <div className="flex justify-center items-center">
     <FaSpinner className="animate-spin text-3xl" />
@@ -45,26 +45,22 @@ const ActivityLogs: React.FC = () => {
       return;
     }
 
-    if (!confirm("Are you sure you want to delete this activity?")) return;
+    toast.promise(
+      deleteActivity(id),
+      {
+        loading: "Deleting activity...",
+        success: "Activity deleted successfully.",
+        error: "There was an error deleting the activity.",
+      },
+      {
+        style: { minWidth: "250px" },
+      }
+    );
 
     // Optimistically update UI for deletion
     setDeletingActivityId(id);
     const updatedActivities = activities.filter((activity) => activity.id !== id);
     setActivities(updatedActivities);
-
-    try {
-      await deleteActivity(id);
-      toast.success("Activity deleted successfully.");
-    } catch (error: unknown) {
-      // Revert UI if delete fails
-      setActivities((prevActivities) => [
-        ...prevActivities,
-        activities.find((activity) => activity.id === id)!,
-      ]);
-      setDeletingActivityId(null);
-      console.error("Error deleting activity:", error);
-      toast.error("There was an error deleting the activity.");
-    }
   };
 
   const handleCreate = async (): Promise<void> => {
@@ -72,15 +68,20 @@ const ActivityLogs: React.FC = () => {
       toast.error("Please enter an activity description.");
       return;
     }
-
+  
     setIsCreating(true);
-
+  
     try {
+      console.log("Creating activity with description:", newActivityDescription); // Debugging log
+  
+      // Create the activity without passing the 'date' field, since Django will auto-set it
       const newActivity = await createActivity({
         user: getUserIdFromCookies() || "", // Get user ID
         description: newActivityDescription,
       });
-
+  
+      console.log("Created activity:", newActivity); // Debugging log
+  
       // Optimistically update UI with the newly created activity
       setActivities((prevActivities) => [newActivity, ...prevActivities]);
       setNewActivityDescription(""); // Clear input
@@ -99,13 +100,15 @@ const ActivityLogs: React.FC = () => {
       <h2 className="text-2xl font-semibold mb-4 flex items-center">Activity Logs 📅</h2>
 
       {/* Inline Input for Adding New Activity */}
-      <div className="flex items-center gap-2 mb-4">
+      <div className="flex flex-wrap gap-4 mb-4 items-center">
         <input
           type="text"
           value={newActivityDescription}
           onChange={(e) => setNewActivityDescription(e.target.value)}
           placeholder="Enter new activity..."
-          className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500"
+          className={`w-full md:w-1/2 p-2 border-2 rounded-md 
+            ${newActivityDescription ? 'border-green-500' : 'border-gray-300'} 
+            focus:ring-2 focus:ring-green-500 focus:border-green-500`}
         />
         <button
           onClick={handleCreate}
@@ -125,7 +128,7 @@ const ActivityLogs: React.FC = () => {
           <p>No activities found. Add your first activity!</p>
         </div>
       ) : (
-        <div className=" overflow-hidden">
+        <div className="overflow-hidden">
           <ul className="divide-y divide-gray-400" aria-live="polite">
             {activities.map((activity) => (
               <li
