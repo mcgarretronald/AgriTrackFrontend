@@ -22,7 +22,7 @@ const Sidebar = () => {
             {/* Mobile Toggle Button */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="md:hidden fixed top-16 left-4 z-50 text-white bg-green-700 p-2 rounded-md shadow-lg"
+                className="md:hidden fixed top-16 left-0 z-50 text-white bg-green-700 p-2 rounded-md shadow-lg"
                 aria-label="Toggle Sidebar"
             >
                 {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}

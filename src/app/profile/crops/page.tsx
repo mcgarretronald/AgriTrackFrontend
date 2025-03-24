@@ -120,7 +120,7 @@ const Crops = () => {
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">Crops Management</h1>
       <form onSubmit={handleSubmit} className="mb-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
           <div>
             <label className="block text-sm font-medium mb-1">Crop Name</label>
             <input
@@ -219,7 +219,7 @@ const Crops = () => {
       </form>
 
       <div className="overflow-x-auto">
-        <table className="min-w-full bg-white border">
+        <table className="min-w-full border rounded-md">
           <thead>
             <tr>
               <th className="py-2 px-4 border">Crop Name</th>
@@ -233,7 +233,7 @@ const Crops = () => {
           <tbody>
             {crops.length === 0 ? (
               <tr>
-                <td colSpan={6} className="py-2 px-4 border text-center">
+                <td colSpan={6} className="py-2 px-4 border rounded-md text-center">
                   No crops
                 </td>
               </tr>
@@ -259,18 +259,18 @@ const Crops = () => {
                       <FaTrash size={20} /> {/* Delete icon */}
                     </button>
                     {showDeletePopup && cropToDelete === crop.id && (
-                      <div className="absolute bg-white p-4 border rounded shadow-lg mt-2 mx-3">
+                      <div className="absolute bg-white p-4 border rounded shadow-lg top-[50%] right-[10%] mt-2 mx-3">
                         <p>Are you sure you want to delete this crop?</p>
                         <div className="mt-2 flex justify-end">
                           <button
                             onClick={confirmDelete}
-                            className="bg-red-500 text-white p-1 rounded mr-2"
+                            className="bg-red-500 text-white px-2 cursor-pointer rounded mr-2"
                           >
                             Yes
                           </button>
                           <button
                             onClick={cancelDelete}
-                            className="bg-gray-500 text-white p-1 rounded"
+                            className="bg-gray-500 text-white px-2 cursor-pointer rounded"
                           >
                             No
                           </button>

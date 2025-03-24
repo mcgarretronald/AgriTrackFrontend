@@ -5,15 +5,23 @@ import "react-toastify/dist/ReactToastify.css";
 
 export default function ProfileLayout({ children }: { children: React.ReactNode }) {
     return (
-        <div className="overflow-hidden min-h-screen">
+        <div className="h-screen flex flex-col">
+            {/* Navbar */}
             <Navbar />
+            
+            {/* Toast Notifications */}
             <ToastContainer position="top-right" autoClose={3000} />
-            <div className="flex">
+            
+            <div className="flex flex-1 overflow-hidden">
                 {/* Sidebar (Only for profile pages) */}
-                <Sidebar />
+                <div className="w-64 h-full "> {/* Adjust width of Sidebar as necessary */}
+                    <Sidebar />
+                </div>
 
                 {/* Page Content */}
-                <div className="flex-1 ml-2 p-5">{children}</div>
+                <div className="flex-1 overflow-auto py-5 rounded-md">
+                    {children}
+                </div>
             </div>
         </div>
     );

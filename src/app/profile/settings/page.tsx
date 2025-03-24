@@ -76,17 +76,15 @@ export default function Settings() {
   };
 
   if (isLoading) {
-    return <div className="animate-pulse space-y-4">
-      <div className="h-6 bg-gray-300 rounded w-1/2"></div>
-      <div className="h-4 bg-gray-300 rounded w-3/4"></div>
-      <div className="h-4 bg-gray-300 rounded w-2/3"></div>
+    return <div className="animate-pulse  text-center ">
+     <h1>Loading...</h1>
     </div>
   }
 
 
   return (
-    <div className="max-w-xl mx-auto p-6 bg-white shadow-lg rounded-2xl border border-gray-200">
-      <h1 className="text-3xl font-bold mb-6 text-gray-800">Account Settings</h1>
+    <div className=" lg:mx-50 mx-5 max-w-4xl">
+      <h1 className="text-2xl mb-5 ">Account Settings</h1>
       {error && <div className="text-red-500 p-2 mb-4 bg-red-100 rounded-md">{error}</div>}
 
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -101,7 +99,7 @@ export default function Settings() {
               name="first_name"
               value={profile.first_name}
               onChange={handleChange}
-              className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500"
+              className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-green-500"
               required
               disabled={isSubmitting}
             />
@@ -116,7 +114,7 @@ export default function Settings() {
               name="last_name"
               value={profile.last_name}
               onChange={handleChange}
-              className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500"
+              className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-green-500"
               required
               disabled={isSubmitting}
             />
@@ -133,7 +131,7 @@ export default function Settings() {
             name="username"
             value={profile.username}
             onChange={handleChange}
-            className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500"
+            className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-green-500"
             required
             disabled={isSubmitting}
           />
@@ -148,16 +146,16 @@ export default function Settings() {
             id="email"
             name="email"
             value={profile.email}
-            className="mt-1 block w-full px-4 py-2 border border-gray-300 bg-gray-100 rounded-lg lowed"
+            className="mt-1 block w-full px-4 py-2 border border-gray-300 cursor-not-allowed rounded-lg lowed"
             disabled
           />
         </div>
 
         {/* Buttons Side by Side */}
-        <div className="flex justify-between gap-4">
+        <div className="flex md:flex-row flex-col justify-between gap-4 lg:mx-20">
           <button
             type="submit"
-            className="flex-1 bg-blue-600 text-white px-5 py-2.5 rounded-lg hover:bg-blue-700 disabled:bg-gray-400"
+            className="flex-1 bg-green-500 text-white px-5 py-2.5 rounded-lg hover:bg-green-600 disabled:bg-gray-400"
             disabled={isSubmitting}
           >
             {isSubmitting ? "Saving..." : "Save Changes"}

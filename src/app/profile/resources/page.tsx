@@ -113,7 +113,7 @@ export default function ResourcesPage() {
   };
 
   return (
-    <div className="p-6 bg-cream min-h-screen relative">
+    <div className="p-6  min-h-screen relative">
       <h1 className="text-2xl font-bold flex items-center gap-2">Resources Management 🛠️</h1>
 
       {/* Create Resource Form */}
@@ -172,10 +172,10 @@ export default function ResourcesPage() {
 
       {/* Resources Table */}
       <h2 className="text-lg font-semibold">Available Inventory</h2>
-      <div className="overflow-x-auto">
-        <table className="w-full border-collapse mt-4 bg-white rounded-lg shadow-md">
+      <div className="">
+        <table className="w-full border-collapse mt-4">
           <thead>
-            <tr className="bg-gray-200">
+            <tr className="bg-green-50 ">
               <th className="p-2 text-left">Name</th>
               <th className="p-2 text-left">Quantity</th>
               <th className="p-2 text-left">Unit</th>
@@ -196,7 +196,7 @@ export default function ResourcesPage() {
                   <td className="p-2 flex gap-2">
                     <button 
                       onClick={() => setEditingResource(resource)}
-                      className="text-blue-500 hover:text-blue-700"
+                      className="text-green-500 hover:text-green-300"
                       aria-label="Edit"
                     >
                       <FaPencilAlt />
@@ -341,7 +341,7 @@ export default function ResourcesPage() {
                 </button>
                 <button
                   onClick={handleUpdateResource}
-                  className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                  className="px-4 py-2 bg-green-500 text-white rounded hover:bg-blue-600"
                 >
                   Save Changes
                 </button>
