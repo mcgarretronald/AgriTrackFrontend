@@ -1,5 +1,5 @@
 "use client";
-
+import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
 import { getProfile, updateProfile } from "../../api/profile";
 import { useRouter } from "next/navigation";
@@ -70,13 +70,19 @@ export default function Settings() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    router.push("/login");
+    Cookies.remove("user_id"); // Remove user_id from cookies
+    localStorage.removeItem("token"); // Remove token from localStorage
+    router.push("/auth/login"); // Redirect to login page
   };
 
   if (isLoading) {
-    return <div className="text-center p-6">Loading profile...</div>;
+    return <div className="animate-pulse space-y-4">
+      <div className="h-6 bg-gray-300 rounded w-1/2"></div>
+      <div className="h-4 bg-gray-300 rounded w-3/4"></div>
+      <div className="h-4 bg-gray-300 rounded w-2/3"></div>
+    </div>
   }
+
 
   return (
     <div className="max-w-xl mx-auto p-6 bg-white shadow-lg rounded-2xl border border-gray-200">

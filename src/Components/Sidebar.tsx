@@ -10,11 +10,11 @@ const Sidebar = () => {
     const pathname = usePathname();
 
     const links = [
-        { href: "/profile", label: "Farm Dashboard", icon: <FaSeedling /> },
-        { href: "/profile/crops", label: "Crops Management", icon: <FaLeaf /> },
-        { href: "/profile/resources", label: "Resources Management", icon: <FaTasks /> },
+        { href: "/profile", label: "Dashboard", icon: <FaSeedling /> },
+        { href: "/profile/crops", label: "Crops", icon: <FaLeaf /> },
+        { href: "/profile/resources", label: "Resources", icon: <FaTasks /> },
         { href: "/profile/activity-logs", label: "Activity Logs", icon: <FaTasks /> },
-        { href: "/profile/settings", label: "Settings & Profile", icon: <FaUserCog /> },
+        { href: "/profile/settings", label: "Profile", icon: <FaUserCog /> },
     ];
 
     return (
