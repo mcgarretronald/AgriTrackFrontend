@@ -1,4 +1,4 @@
-;# AgriTrack - Farm Management System (Frontend)
+# AgriTrack - Farm Management System (Frontend)
 ## This is the frontend for the AgriTrack Farm Management System, built using Next.js.
 
 
