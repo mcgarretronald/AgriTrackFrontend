@@ -28,7 +28,8 @@ jobs:
       - name: Install dependencies
         working-directory: ./
         run: npm ci
-
+        env:
+          NEXT_PUBLIC_API_BASE_URL: ${{ secrets.NEXT_PUBLIC_API_BASE_URL }}
       - name: Build Next.js project
         working-directory: ./
         run: npm run build
