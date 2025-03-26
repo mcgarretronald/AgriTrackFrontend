@@ -18,5 +18,5 @@ npm run dev
 Open http://localhost:3000 with your browser to see the result.
 
 Live Site
-Not in the mood to set it up locally? No worries—you can view the live AgriTrack site link.
+Not in the mood to set it up locally? No worries—you can view the live AgriTrack site [link](https://agri-track-eight.vercel.app/).
 
