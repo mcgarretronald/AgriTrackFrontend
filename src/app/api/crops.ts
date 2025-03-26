@@ -19,18 +19,12 @@ export const createCrop = async (cropData: {
     throw new Error("User ID is missing from cookies.");
   }
 
-  // Convert user_id to a number
-  const userIdNumber = Number(userId);
-  if (isNaN(userIdNumber)) {
-    throw new Error("Invalid user ID in cookies.");
-  }
 
   const payload = {
     ...cropData,
-    user_id: userIdNumber, // Send user_id as a number
+    user_id: userId, 
   };
 
-  console.log("Sending payload:", payload); // Debugging: Log the payload
 
   try {
     const response = await fetch(`${API_URL}/crops/crops/`, {

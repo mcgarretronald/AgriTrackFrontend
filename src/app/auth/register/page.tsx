@@ -125,7 +125,7 @@ export default function Register() {
                                         className="absolute right-3 top-3 text-gray-500 hover:text-gray-700"
                                         onClick={() => setShowPassword(!showPassword)}
                                     >
-                                        {showPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
+                                        {showPassword ?  <FaEye size={18} /> : <FaEyeSlash size={18} />}
                                     </button>
                                 </div>
 

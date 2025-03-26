@@ -185,7 +185,7 @@ const Crops = () => {
         </div>
         <button
           type="submit"
-          className="mt-4 bg-[#4CAF50] text-white p-2 rounded flex items-center justify-center"
+          className="mt-4 bg-[#4CAF50] cursor-pointer text-white p-2 rounded flex items-center justify-center"
           disabled={isLoading}
         >
           {isLoading ? (
